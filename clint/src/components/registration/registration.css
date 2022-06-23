@@ -1,0 +1,77 @@
+.registrationForm {
+  width: 88vw;
+  margin: auto;
+  padding: 10px;
+  padding-top: 80px;
+  color: white;
+}
+.buttonUser {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.buttonUser button {
+  width: 30%;
+}
+.registrationForm label {
+  font-size: 22px;
+}
+.registrationForm input {
+  outline: none;
+  background-color: transparent;
+  color: white;
+  font-weight: bold;
+}
+.registrationForm input:focus {
+  background-color: transparent;
+  color: white;
+}
+.registrationForm select {
+  background-color: transparent;
+  outline: none;
+  color: white;
+}
+#validationDefault04 option,
+#validationDefault003 option,
+#validationDefault005 option {
+  background-color: rgb(67, 42, 230);
+  border-radius: 10px;
+}
+.extension {
+  font-weight: 600;
+  color: rgb(33, 209, 14);
+}
+.registrationForm label {
+  font-weight: bolder;
+}
+
+@media only screen and (max-width: 800px) {
+  .registrationForm {
+    padding-top: 60px;
+  }
+  .registrationForm label {
+    width: 100%;
+    text-align: center;
+  }
+  .registrationForm input {
+    text-align: center;
+  }
+  .registrationForm button {
+    width: 100%;
+  }
+  .registrationForm select {
+    width: 100%;
+    text-align: center;
+  }
+  .buttonUser {
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+  }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
