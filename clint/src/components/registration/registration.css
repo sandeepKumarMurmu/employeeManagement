@@ -1,9 +1,19 @@
-.registrationForm {
-  width: 88vw;
-  margin: auto;
-  padding: 10px;
-  padding-top: 80px;
+.formContainer {
+  height: 100vh;
+  overflow: scroll;
+}
+.mainContainer {
+  margin-top: 12vh;
   color: white;
+}
+.registrationForm {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  width: 80vw;
+  margin: auto;
+  padding: 20px;
+
+  color: white;
+  border-radius: 8px;
 }
 .buttonUser {
   display: flex;
@@ -34,7 +44,7 @@
 #validationDefault04 option,
 #validationDefault003 option,
 #validationDefault005 option {
-  background-color: rgb(67, 42, 230);
+  background-color: rgb(2, 0, 36);
   border-radius: 10px;
 }
 .extension {
@@ -47,9 +57,6 @@
 }
 
 @media only screen and (max-width: 800px) {
-  .registrationForm {
-    padding-top: 60px;
-  }
   .registrationForm label {
     width: 100%;
     text-align: center;

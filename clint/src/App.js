@@ -1,12 +1,13 @@
 import "./App.css";
-import { NavBar } from "./components/navBar/navBar";
-import { RegistrationForm } from "./components/registration/registration";
+
+// importing components
+import { AllRoutes } from "./components/routes/allRoutes";
+
 
 function App() {
   return (
     <div className="App">
-      <NavBar />
-      <RegistrationForm />
+      <AllRoutes />
     </div>
   );
 }
