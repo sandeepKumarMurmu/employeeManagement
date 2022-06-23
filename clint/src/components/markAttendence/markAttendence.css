@@ -1,0 +1,53 @@
+.heightCheck {
+  min-height: 88vh;
+}
+
+.buttonContainer {
+  width: 68vw;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  column-gap: 2%;
+}
+
+.login {
+  text-align: center;
+  margin: auto;
+  margin-top: 6vh;
+  border-radius: 8px;
+  padding: 20px;
+  width: 40vw;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.formContainer_login {
+  width: 98%;
+  margin: auto;
+}
+.formContainer_login input {
+  background-color: transparent;
+  text-align: center;
+  color: white;
+}
+.formContainer_login input:focus {
+  background-color: transparent;
+  color: white;
+}
+
+@media only screen and (max-width: 800px) {
+  .buttonContainer {
+    text-align: center;
+    width: 88vw;
+    height: 20vh;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  .buttonContainer h3 {
+    margin-bottom: -2px;
+  }
+  .login {
+    width: 95vw;
+  }
+} ;
