@@ -4,8 +4,16 @@ import "./markAttendence.css";
 //importing from library
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { bindActionCreators } from "redux";
+
+// importing components
+import { ActionCreators } from "../state/store/index";
 
 export const MarkAttendecne = () => {
+  const dispatch = useDispatch();
+  const { TrackLogin } = bindActionCreators(ActionCreators, dispatch);
+
   const nav = useNavigate();
   const [employee, setEmployee] = useState({
     isEmployee: false,
@@ -54,8 +62,10 @@ export const MarkAttendecne = () => {
                   e.preventDefault();
                   if (employee.isEmployee) {
                     alert("your attendence is marked");
+                    window.location.reload();
                   } else {
                     nav("/home");
+                    TrackLogin({ ...employee });
                   }
                 }}
               >
