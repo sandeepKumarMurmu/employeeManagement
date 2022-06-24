@@ -8,6 +8,7 @@ const cors = require("cors");
 const employee_route = require("./src/routes/employee_route");
 const login_route = require("./src/routes/login_route");
 const attendence_route = require("./src/routes/attendence_route");
+const salary_route = require("./src/routes/salaryUpdata");
 
 //initializing app
 const app = express();
@@ -20,6 +21,7 @@ app.use(cors());
 app.use("/", employee_route);
 app.use("/", login_route);
 app.use("/", attendence_route);
+app.use("/", salary_route);
 
 // declearing port
 const PORT = process.env.PORT || 8080;
@@ -27,8 +29,8 @@ const password = process.env.URI_PASS;
 const userName = process.env.URI_KEY;
 
 // url to data base
-const url = `mongodb+srv://${userName}:${password}@cluster0.t8llmza.mongodb.net/?retryWrites=true&w=majority`;
-// const url = "mongodb://127.0.0.1:27017/employee_management";
+// const url = `mongodb+srv://${userName}:${password}@cluster0.t8llmza.mongodb.net/?retryWrites=true&w=majority`;
+const url = "mongodb://127.0.0.1:27017/employee_management";
 // listinig app
 mongoose.connect(url, () => {
   app.listen(PORT, async () => {

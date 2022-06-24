@@ -4,6 +4,7 @@ const { body } = require("express-validator");
 
 // importing controllers
 const newEmployeeController = require("../controller/newEmployee/createNewEmployeeController");
+const singleController = require("../controller/newEmployee/singleEmploye");
 
 // importing employee middleware
 const employeeMiddle = require("../middlewares/newEmployeeMiddle");
@@ -24,6 +25,8 @@ router.post(
   employeeMiddle,
   newEmployeeController
 );
+
+router.get("/single/:id", singleController);
 
 // exporting router
 module.exports = router;
