@@ -4,12 +4,18 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 
+// importing routrs
+const EmployeeController = require("./src/routes/employee_route");
+
 //initializing app
 const app = express();
 
 // middlewares
 app.use(express.json());
 app.use(cors());
+
+// api middleware
+app.use("/", EmployeeController);
 
 // declearing port
 const PORT = process.env.PORT || 8080;

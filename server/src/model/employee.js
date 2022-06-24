@@ -10,10 +10,10 @@ const employee_Schema = new mongoose.Schema({
   branch: { type: String, required: true },
   admin: { trype: Boolean },
   admin_key: { type: String },
-  image: { trype: String, required: true },
+  profile_image: { type: String, required: true },
   address: { type: String, required: true },
-  leaves: { type: Number, required: true, defalu: 5 },
-  absent: { type: Number, required: true, defalult: 0 },
+  leaves: { type: Number, required: true, default: 4 },
+  absent: { type: Number, required: true, default: 0 },
 });
 
 // model employee
