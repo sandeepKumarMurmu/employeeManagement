@@ -1,8 +1,38 @@
+// importing css file
 import "./registration.css";
 
 //importing important datas
 import { States, Branch } from "../importantData";
+
+// importing from library
+import axios from "axios";
+import { useState } from "react";
+
+// importing main render function
 export const RegistrationForm = () => {
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    profile_image: "",
+    admin: "",
+    payScale: "",
+    city: "",
+    state: "",
+    zipcode: "",
+    branch: "",
+  });
+
+  // handel form
+  function handelFormData(e) {
+    const { id, value } = e.target;
+    setFormData({ ...formData, [id]: value });
+  }
+  // handel submit
+  function handelSubmit() {
+    axios.post("http://localhost:8080/newemployee", formData).then((res) => {
+      console.log(res);
+    });
+  }
   return (
     <div className="mainContainer">
       <div className="titleContainer">
@@ -10,119 +40,121 @@ export const RegistrationForm = () => {
       </div>
       <div className="formContainer">
         <div className="registrationForm ">
-          <form className="row g-3 justify-content-center d-flex">
+          <form
+            className="row g-3 justify-content-center d-flex"
+            onSubmit={(e) => {
+              e.preventDefault();
+              handelSubmit();
+            }}
+          >
             {/* first name */}
             <div className="col-md-4">
-              <label htmlFor="validationDefault01" className="form-label">
+              <label htmlFor="firstName" className="form-label">
                 First name
               </label>
               <input
+                onChange={(e) => {
+                  handelFormData(e);
+                }}
                 type="text"
                 className="form-control"
-                id="validationDefault01"
+                id="firstName"
                 required
               />
             </div>
             {/* last name */}
             <div className="col-md-4">
-              <label htmlFor="validationDefault02" className="form-label">
+              <label htmlFor="lastName" className="form-label">
                 Last name
               </label>
               <input
+                onChange={(e) => {
+                  handelFormData(e);
+                }}
                 type="text"
                 className="form-control"
-                id="validationDefault02"
+                id="lastName"
                 required
               />
             </div>
-            {/* user name */}
-            <div className="col-md-4">
-              <label htmlFor="validationDefaultUsername" className="form-label">
-                Username
-              </label>
-              <div className="input-group">
-                <span className="input-group-text" id="inputGroupPrepend2">
-                  @
-                </span>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="validationDefaultUsername"
-                  aria-describedby="inputGroupPrepend2"
-                  required
-                />
-              </div>
-            </div>
-            {/* date of birth */}
-            <div className="col-md-4">
-              <label htmlFor="validationDefault001" className="form-label">
-                date of Birth <span className="extension">( DD/MM/YYYY )</span>
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="validationDefault001"
-                required
-              />
-            </div>
+
             {/* profile image */}
             <div className="col-md-4">
-              <label htmlFor="validationDefault002" className="form-label">
+              <label htmlFor="profile_image" className="form-label">
                 Profile image <span className="extension">( url )</span>
               </label>
               <input
+                onChange={(e) => {
+                  handelFormData(e);
+                }}
                 type="url"
                 className="form-control"
-                id="validationDefault002"
+                id="profile_image"
               />
             </div>
             {/* employee type */}
             <div className="col-md-3">
-              <label htmlFor="validationDefault003" className="form-label">
+              <label htmlFor="admin" className="form-label">
                 Employee type
               </label>
               <select
                 className="form-select"
-                id="validationDefault003"
+                id="admin"
                 required
+                onChange={(e) => {
+                  handelFormData(e);
+                }}
               >
                 <option selected disabled value={""}>
                   Choose...
                 </option>
-                <option value={"worker"}>worker</option>
-                <option value={"admin"}>Admin</option>
+                <option value={false}>worker</option>
+                <option value={true}>Admin</option>
               </select>
             </div>
             {/* salary */}
             <div className="col-md-4">
-              <label htmlFor="validationDefault004" className="form-label">
+              <label htmlFor="payScale" className="form-label">
                 Pay scale
               </label>
               <input
+                onChange={(e) => {
+                  handelFormData(e);
+                }}
                 type="Number"
                 className="form-control"
-                id="validationDefault004"
+                id="payScale"
                 required
               />
             </div>
             {/* city */}
             <div className="col-md-6">
-              <label htmlFor="validationDefault03" className="form-label">
+              <label htmlFor="city" className="form-label">
                 City
               </label>
               <input
+                onChange={(e) => {
+                  handelFormData(e);
+                }}
                 type="text"
                 className="form-control"
-                id="validationDefault03"
+                id="city"
                 required
               />
             </div>
             {/* state */}
             <div className="col-md-3">
-              <label htmlFor="validationDefault04" className="form-label">
+              <label htmlFor="state" className="form-label">
                 State
               </label>
-              <select className="form-select" id="validationDefault04" required>
+              <select
+                className="form-select"
+                id="state"
+                required
+                onChange={(e) => {
+                  handelFormData(e);
+                }}
+              >
                 <option selected disabled value={""}>
                   Choose...
                 </option>
@@ -136,13 +168,16 @@ export const RegistrationForm = () => {
             </div>
             {/* zip code */}
             <div className="col-md-3">
-              <label htmlFor="validationDefault05" className="form-label">
+              <label htmlFor="zipcode" className="form-label">
                 Zip
               </label>
               <input
+                onChange={(e) => {
+                  handelFormData(e);
+                }}
                 type="Number"
                 className="form-control"
-                id="validationDefault05"
+                id="zipcode"
                 maxLength={6}
                 minLength={6}
                 required
@@ -150,13 +185,16 @@ export const RegistrationForm = () => {
             </div>
             {/* branch */}
             <div className="col-md-3">
-              <label htmlFor="validationDefault005" className="form-label">
+              <label htmlFor="branch" className="form-label">
                 Branch
               </label>
               <select
                 className="form-select"
-                id="validationDefault005"
+                id="branch"
                 required
+                onChange={(e) => {
+                  handelFormData(e);
+                }}
               >
                 <option selected disabled value={""}>
                   Choose...

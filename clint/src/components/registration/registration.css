@@ -37,7 +37,14 @@
   color: white;
 }
 .registrationForm select {
-  background-color: transparent;
+  background-color: rgb(48, 87, 186);
+  background-color: linear-gradient(
+    302deg,
+    rgba(34, 193, 195, 1) 0%,
+    rgba(125, 88, 185, 1) 20%,
+    rgba(76, 85, 149, 1) 41%,
+    rgba(117, 45, 253, 1) 74%
+  );
   outline: none;
   color: white;
 }

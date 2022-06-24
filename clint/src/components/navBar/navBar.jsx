@@ -1,11 +1,17 @@
 // importing from library
-import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+
+import { bindActionCreators } from "redux";
 // importing css file
 import "./navBar.css";
+import { ActionCreators } from "../state/store";
 
 //main render function
 export const NavBar = () => {
+  const nav = useNavigate();
+  const dispatch = useDispatch();
+  const { TrackLogin } = bindActionCreators(ActionCreators, dispatch);
   const { isEmployee } = useSelector((state) => state.TrackLogin);
 
   return (
@@ -41,7 +47,7 @@ export const NavBar = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to={"/attendence"} className="nav-link" href="#">
+                <Link to={"/attendence"} className="nav-link">
                   Check Attendence
                 </Link>
               </li>
@@ -49,32 +55,16 @@ export const NavBar = () => {
               <li className="nav-item">
                 <a className="nav-link ">Update Salary</a>
               </li>
-              <li>
-                <div className="dropdown">
-                  <a
-                    className="dropdown-toggle nav-link active"
-                    id="dropdownMenuButton1"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    Toggler
-                  </a>
-                  <ul
-                    className="dropdown-menu"
-                    aria-labelledby="dropdownMenuButton1"
-                  >
-                    <li>
-                      <a className="dropdown-item" href="#">
-                        Admin
-                      </a>
-                    </li>
-                    <li>
-                      <a className="dropdown-item" href="#">
-                        Employe
-                      </a>
-                    </li>
-                  </ul>
-                </div>
+              <li className="nav-item">
+                <p
+                  className="nav-link"
+                  onClick={() => {
+                    TrackLogin({ isEmployee: true, selected: true });
+                    nav("/");
+                  }}
+                >
+                  logout
+                </p>
               </li>
             </ul>
             <form className="d-flex" role="search">

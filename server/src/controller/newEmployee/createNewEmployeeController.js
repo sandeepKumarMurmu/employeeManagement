@@ -15,8 +15,8 @@ module.exports = async (req, res) => {
       req.body.firstName +
       "_" +
       generator.generate({ length: 4, numbers: true });
-    console.log(req.body.admin);
-    if (req.body.admin) {
+    const state = req.body.admin == "true" ? true : false;
+    if (state) {
       uniqueId =
         "admin" +
         "_" +
@@ -26,7 +26,7 @@ module.exports = async (req, res) => {
     }
 
     const hashPassword = HashingPassword(password);
-    const hasedUniqueId = req.body.admin ? HashingPassword(uniqueId) : "null";
+    const hasedUniqueId = state ? HashingPassword(uniqueId) : "null";
 
     await Employee.create({
       name: req.body.firstName + " " + req.body.lastName,
@@ -43,7 +43,7 @@ module.exports = async (req, res) => {
     });
 
     let data = {};
-    if (req.body.admin) {
+    if (state) {
       data = {
         userName: "@" + req.body.firstName + "_" + req.body.lastName,
         password,
@@ -55,6 +55,7 @@ module.exports = async (req, res) => {
         password,
       };
     }
+
     return res
       .status(200)
       .json({ data, status: true, message: "employe created" });

@@ -2,6 +2,7 @@
 
 export const TrackLogin = (
   state = {
+    message: "",
     isEmployee: true,
     selected: false,
   },

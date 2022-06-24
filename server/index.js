@@ -5,7 +5,9 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 
 // importing routrs
-const EmployeeController = require("./src/routes/employee_route");
+const employee_route = require("./src/routes/employee_route");
+const login_route = require("./src/routes/login_route");
+const attendence_route = require("./src/routes/attendence_route");
 
 //initializing app
 const app = express();
@@ -15,7 +17,9 @@ app.use(express.json());
 app.use(cors());
 
 // api middleware
-app.use("/", EmployeeController);
+app.use("/", employee_route);
+app.use("/", login_route);
+app.use("/", attendence_route);
 
 // declearing port
 const PORT = process.env.PORT || 8080;
