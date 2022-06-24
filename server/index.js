@@ -28,7 +28,7 @@ const userName = process.env.URI_KEY;
 
 // url to data base
 const url = `mongodb+srv://${userName}:${password}@cluster0.t8llmza.mongodb.net/?retryWrites=true&w=majority`;
-
+// const url = "mongodb://127.0.0.1:27017/employee_management";
 // listinig app
 mongoose.connect(url, () => {
   app.listen(PORT, async () => {
@@ -39,3 +39,5 @@ mongoose.connect(url, () => {
     }
   });
 });
+// C:\Program Files\MongoDB\Server\5.0\log\
+// C:\Program Files\MongoDB\Server\5.0\log\
