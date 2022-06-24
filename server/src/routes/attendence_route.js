@@ -1,5 +1,5 @@
 // importing controller
-const attendence_controller = require("../controller/attendence/attendence_controller");
+const attendence_controller = require("../controller/attendence/attendence");
 
 // inpmorting from library
 const { Router } = require("express");
