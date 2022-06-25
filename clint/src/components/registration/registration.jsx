@@ -29,9 +29,20 @@ export const RegistrationForm = () => {
   }
   // handel submit
   function handelSubmit() {
-    axios.post("http://localhost:8080/newemployee", formData).then((res) => {
-      console.log(res);
-    });
+    axios
+      .post("http://localhost:8080/newemployee", formData)
+      .then(({ data }) => {
+        console.log(data.data);
+        if (data.data.uniqueId) {
+          alert(
+            `user Name : ${data.data.userName}, password : ${data.data.password}  unique Id : ${data.data.uniqueId}`
+          );
+        } else {
+          alert(
+            `user Name : ${data.data.userName}, password : ${data.data.password}  `
+          );
+        }
+      });
   }
   return (
     <div className="mainContainer">

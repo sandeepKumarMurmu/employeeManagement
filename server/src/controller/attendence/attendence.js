@@ -5,6 +5,7 @@ const Employee = require("../../model/employee");
 // controller function
 module.exports = async (req, res) => {
   const { list, date } = req.body;
+  console.log(list);
   try {
     const arr = [];
 
@@ -16,7 +17,7 @@ module.exports = async (req, res) => {
       } else {
         let abs = ele.absent;
         await Employee.findByIdAndUpdate(ele._id.toString(), {
-          absent: abs + 1,
+          absent: abs + 2,
         })
           .lean()
           .exec(() => {
@@ -39,13 +40,13 @@ module.exports = async (req, res) => {
       }
     }
 
-    const attendenceData = await attendence.create({
+    await attendence.create({
       date,
       list: arr,
       present: list.length,
       absent: data.length - list.length,
     });
-    return res.status(200).json({ attendenceData });
+    return res.status(200).json({ message: "created" });
   } catch (e) {
     console.log(e);
     return res.status(400).json({ error: "erron in attendence controller" });

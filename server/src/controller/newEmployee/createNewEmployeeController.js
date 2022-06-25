@@ -53,6 +53,7 @@ module.exports = async (req, res) => {
       data = {
         userName: "@" + req.body.firstName + "_" + req.body.lastName,
         password,
+        uniqueId: null,
       };
     }
 

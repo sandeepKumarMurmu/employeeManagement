@@ -36,27 +36,75 @@ export const MarkAttendecne = () => {
   }
 
   // use effects
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //    axios.
-  //   }, 1000 * 60);
-  // }, []);
+  useEffect(() => {
+    setInterval(() => {
+      const day = new Date();
+      axios
+        .post("http://localhost:8080/attendence", {
+          date: `${day.getDate()}-${day.getMonth()}-${day.getFullYear()}`,
+          list: [...todyAttendence],
+        })
+        .then((res) => {
+          console.log(res);
+        });
+    }, 1000 * 60 * 60 * 24);
+  }, []);
 
+  // mark attendence
   const markAttendenc = (data) => {
-    axios.post("http://localhost:8080/login", data).then((res) => {
-      console.log(res);
-      document.getElementById("userName").innerHTML = "";
-      document.getElementById("password").innerHTML = "";
-      if (!employee.isEmployee)
-        document.getElementById("admin_key").innerHTML = "";
+    axios
+      .post("http://localhost:8080/login", data)
+      .then(({ data }) => {
+        alert(data.message);
+        setEmployee({
+          message: "",
+          isEmployee: false,
+          selected: false,
+        });
 
-      setEmployee({
-        message: "",
-        isEmployee: false,
-        selected: false,
+        setTodayAttendence([...todyAttendence, data._id]);
+      })
+      .catch(({ response }) => {
+        alert(response.data.message);
       });
-      setFormData({ userName: "", password: "", admin_key: "" });
+    document.getElementById("userName").value = "";
+    document.getElementById("password").value = "";
+    setFormData({ userName: "", password: "", admin_key: "" });
+  };
+  // handel admin
+  const handelAdmin = (data) => {
+    // axios
+    //   .post("http://localhost:8080/login", data)
+    //   .then(({ data }) => {
+    //     alert(data.message);
+    //     setEmployee({
+    //       message: "",
+    //       isEmployee: false,
+    //       selected: false,
+    //     });
+
+    //     document.getElementById("admin_key").innerHTML = "";
+    //     setTodayAttendence([...todyAttendence, data._id]);
+    //     TrackLogin({ ...employee });
+    //     nav("/");
+    //   })
+    //   .catch(({ response }) => {
+    //     alert(response.data.message);
+    //   });
+
+    setEmployee({
+      message: "",
+      isEmployee: false,
+      selected: false,
     });
+
+    // document.getElementById("admin_key").innerHTML = "";
+    // setTodayAttendence([...todyAttendence, data._id]);
+    TrackLogin({ ...employee });
+    nav("/");
+    // document.getElementById("userName").value = "";
+    // document.getElementById("password").value = "";
+    setFormData({ userName: "", password: "", admin_key: "" });
   };
   return (
     <div className="mainContainer heightCheck">
@@ -78,26 +126,15 @@ export const MarkAttendecne = () => {
         <button
           className="btn btn-warning "
           onClick={() => {
-            setEmployee({
-              message: "Login as Admin",
-              isEmployee: false,
-              selected: true,
-            });
+            // setEmployee({
+            //   message: "Login as Admin",
+            //   isEmployee: false,
+            //   selected: true,
+            // });
+            handelAdmin();
           }}
         >
           Login as Admin
-        </button>
-        <button
-          className="btn btn-danger "
-          onClick={() => {
-            setEmployee({
-              message: "Leave Request",
-              isEmployee: true,
-              selected: true,
-            });
-          }}
-        >
-          Leave Request
         </button>
       </div>
       {/* login / welcom dilog */}
@@ -113,9 +150,6 @@ export const MarkAttendecne = () => {
                   e.preventDefault();
                   if (employee.isEmployee) {
                     markAttendenc(formData);
-                  } else {
-                    TrackLogin({ ...employee });
-                    nav("/");
                   }
                 }}
               >

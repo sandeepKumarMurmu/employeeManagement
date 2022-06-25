@@ -53,9 +53,6 @@ export const NavBar = () => {
               </li>
 
               <li className="nav-item">
-                <a className="nav-link ">Update Salary</a>
-              </li>
-              <li className="nav-item">
                 <p
                   className="nav-link"
                   onClick={() => {
@@ -67,21 +64,6 @@ export const NavBar = () => {
                 </p>
               </li>
             </ul>
-            <form className="d-flex" role="search">
-              <input
-                className="form-control me-2"
-                type="search"
-                placeholder="Search Employee"
-                aria-label="Search"
-              />
-              <button
-                className="btn btn-outline-success "
-                color="white"
-                type="submit"
-              >
-                Search
-              </button>
-            </form>
           </div>
         )}
       </div>

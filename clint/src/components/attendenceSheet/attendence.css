@@ -33,10 +33,27 @@
 .tableContainer::-webkit-scrollbar {
   display: none;
 }
+.container_dd {
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.ul_dd {
+  height: 30vh;
+  overflow: scroll;
+}
+.ul_dd li {
+  text-align: center;
+}
 
 @media only screen and (max-width: 800px) {
   .attendenceSheet {
     width: 98%;
     padding: 10px;
   }
-} ;
+}
+
+.ul_dd::-webkit-scrollbar {
+  display: none;
+}
