@@ -44,6 +44,27 @@ export const RegistrationForm = () => {
         }
       });
   }
+
+  // clearing function
+  function clear() {
+    setFormData({
+      firstName: "",
+      lastName: "",
+      profile_image: "",
+      admin: "",
+      payScale: "",
+      city: "",
+      state: "",
+      zipcode: "",
+      branch: "",
+    });
+    document.getElementById('firstName').value = '';
+    document.getElementById('lastName').value = '';
+    document.getElementById('profile_image').value = '';
+    document.getElementById('payScale').value = '';
+    document.getElementById('city').value = '';
+    document.getElementById('zipcode').value = '';
+  }
   return (
     <div className="mainContainer">
       <div className="titleContainer">
@@ -222,7 +243,13 @@ export const RegistrationForm = () => {
               <button className="btn btn-success" type="submit">
                 Create
               </button>
-              <button className="btn btn-danger" type="submit">
+              <button type="button"
+                className="btn btn-danger"
+                onClick={() => {
+                  clear();
+                  console.log("hi")
+                }}
+              >
                 Discard
               </button>
             </div>
