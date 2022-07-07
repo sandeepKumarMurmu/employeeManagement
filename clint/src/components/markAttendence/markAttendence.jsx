@@ -47,7 +47,7 @@ export const MarkAttendecne = () => {
         .then((res) => {
           console.log(res);
         });
-    }, 1000 * 60 * 60 * 24);
+    }, 1000 *60);
   }, []);
 
   // mark attendence
@@ -100,11 +100,18 @@ export const MarkAttendecne = () => {
 
     // document.getElementById("admin_key").innerHTML = "";
     // setTodayAttendence([...todyAttendence, data._id]);
-    TrackLogin({ ...employee });
+
+    setFormData({ userName: "", password: "", admin_key: "" });
+    TrackLogin({
+      ...{
+        message: "",
+        isEmployee: false,
+        selected: false,
+      },
+    });
     nav("/");
     // document.getElementById("userName").value = "";
     // document.getElementById("password").value = "";
-    setFormData({ userName: "", password: "", admin_key: "" });
   };
   return (
     <div className="mainContainer heightCheck">
@@ -131,7 +138,15 @@ export const MarkAttendecne = () => {
             //   isEmployee: false,
             //   selected: true,
             // });
-            handelAdmin();
+            // handelAdmin();
+            TrackLogin({
+              ...{
+                message: "",
+                isEmployee: false,
+                selected: false,
+              },
+            });
+            nav("/");
           }}
         >
           Login as Admin
